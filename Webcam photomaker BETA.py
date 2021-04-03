@@ -1,23 +1,24 @@
 # -*- coding: utf-8 -*-
-import cv2, time, zipfile, os, smtplib
+import cv2, time, zipfile, os
 
 stream = cv2.VideoCapture(0)
 stream.set(cv2.CAP_PROP_FPS, 24) 
 stream.set(cv2.CAP_PROP_FRAME_WIDTH, 1024)
 stream.set(cv2.CAP_PROP_FRAME_HEIGHT, 768) 
 
-os.chdir('C:\\')   
 n = 0
-key = input('Чтобы сделать фото, введи «1». \nУ тебя будет 10 секунд на то, чтобы принять нужную позу. \nВнимание! Чтобы фотографии сохранились, обязательно заверши программу командой «2»\n')
+prepare = int(input('Выбери, сколько секунд тебе нужно, чтобы подготовиться к фото (например 5 или 10): '))
+print(f'\nУ тебя будет {prepare} секунд на то, чтобы принять нужную позу. \nВнимание! Чтобы фотографии сохранились, обязательно заверши программу командой «2»\n')
+key = input('\nЧтобы сделать фото, введи «1».\n')
 zip = zipfile.ZipFile('Фотосессия.zip', 'w')
 
 while (stream.isOpened()):
 
     if key == '1':
         print('\nПредставь, что ты фотомодель — приготовься.')
-        for i in range(10):
+        for i in range(prepare):
             time.sleep(1)
-            print(f'{10-i}...')
+            print(f'{prepare-i}...')
         status, photo = stream.read()
         print('Попался, красавчик!')
         cv2.imshow('SEXUALITY = 100%', photo)
@@ -30,9 +31,9 @@ while (stream.isOpened()):
             json.write('[1, [0, 0, 0, 0]]')
             json.close()
             zip.write(f'{n}.jpg')
-            os.remove(f'C:\{n}.jpg')        
+            os.remove(f'{n}.jpg')        
             zip.write(f'{n}.json')
-            os.remove(f'C:\{n}.json')        
+            os.remove(f'{n}.json')        
             n+=1
             print('\nА у тебя есть вкус <3\n')                   
         else:
@@ -42,7 +43,8 @@ while (stream.isOpened()):
         
     elif key == '2':
         zip.close()    
-        print('\nСохранено!\nИщи свои фото по адресу C:/Фотосессия.zip\n')
+        print(f'\nСохранено!\nИщи свои фото по адресу {os.getcwd()}\Фотосессия.zip\n')
+        os.startfile('Фотосессия.zip')
         
         break
         
