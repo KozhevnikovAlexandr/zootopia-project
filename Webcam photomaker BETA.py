@@ -1,3 +1,5 @@
+# БИЛД ЗАГРУЗИЛ НА https://disk.yandex.ru/d/8JmdSH2pUs0OwQ
+
 # -*- coding: utf-8 -*-
 import cv2, time, zipfile, os
 
@@ -45,13 +47,7 @@ while (stream.isOpened()):
         zip.close()    
         print(f'\nСохранено!\nИщи свои фото по адресу {os.getcwd()}\Фотосессия.zip\n')
         os.startfile('Фотосессия.zip')
-        
         break
-        
-    elif key == '3':
-        print('\nСворачиваемся...\n')
-        break        
-
     else:
         key = input('\nНе-а, только «1» или «2»\n')       
         
