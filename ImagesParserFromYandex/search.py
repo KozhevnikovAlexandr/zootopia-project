@@ -1,7 +1,6 @@
 import requests
 import os.path
 from ImageParser import YandexImage
-import pyinstaller
 
 parser = YandexImage()
 
