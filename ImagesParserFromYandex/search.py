@@ -3,7 +3,6 @@ import os.path
 from ImageParser import YandexImage
 import pyinstaller
 
-pyinstaller -F -w -i( to set up icon on your .exe) search.py
 parser = YandexImage()
 
 n = int(input("Введите количество желаемых запросов: "))
